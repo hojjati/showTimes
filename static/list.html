@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <!-- jQuery -->
+    <script src="./js/jquery/jquery-3.4.1.js"></script>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+            integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+            crossorigin="anonymous"></script>
+
+    <!-- Materialize -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <!-- JavaScript -->
+    <script src="./js/list.js"></script>
+
+</head>
+
+<body>
+<div ng-app="myApp" ng-controller="moviesCtrl">
+    <div class="section">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" ng-model="movieNameFilter" placeholder="Filter by Name">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="striped highlight">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Show Days</th>
+                                    <th>Categories</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="movie in movies | filter: customFilter">
+                                    <td>
+                                        <a href="detail.html?id={{ movie.id }}">
+                                            {{ movie.name }}
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <span ng-repeat="showTime in movie.showTimes">
+                                            {{ showTime.day }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span ng-repeat="category in movie.categories">
+                                            {{ category.name }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-md-center">
+                        <div class="col-sm-4">
+                            <label for="days">Filter by day:</label>
+                            <select id="days" ng-model="selectedWeekday" style="display: block"
+                                    ng-options="weekday for weekday in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']">
+                                <option value="">-- Any --</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
