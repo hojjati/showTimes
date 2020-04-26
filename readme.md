@@ -24,4 +24,4 @@ In the current version of the app filtering is done in the front-end.
 However, if we were dealing with a large database of movies, we would
 have to move filtering to the API. Another consideration would be to 
 add pagination in the back-end to avoid loading the entire database into
-the front-end at once.   
+the front-end at once.
